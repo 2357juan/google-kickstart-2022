@@ -1,0 +1,5 @@
+The problem implies BFS
+
+It is just asking for the number of queries that fill containers.
+
+Each container is connected to exactly one container on the level below
