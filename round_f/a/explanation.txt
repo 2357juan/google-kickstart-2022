@@ -1,0 +1,47 @@
+The question asks to sort N fabrics specified by by C,D,U
+
+Color (C), a string consisting of lowercase letters of the English alphabet, representing the color of the fabric.
+Durability (D), an integer representing the durability of the fabric.
+Unique identifier (U), an integer representing the ID of the fabric.
+
+The rules are
+
+Ada sorts in lexicographically increasing order by color (C).
+Charles sorts in ascending order by durability (D).
+They break ties by sorting in ascending order by the unique identifier (U).
+
+The third statement is a bit confusing and should be rephrased as
+
+Each worker breaks ties by sorting in ascending order by the unique identifier (U).
+
+So if ada has a,a,a then we want a,1 a,2 a,3 not a,3 a,2 a,1 as this causes ambiguity
+as charles may sort them differently.
+
+
+What we should do is 
+
+sort ada by key C,U
+
+sort Charles by key D,U
+
+then for each item check if U is equal.
+
+Algorithm:
+Let n = number of fabrics
+
+Let F = the array of fabrics
+
+Ada = sorted(F,key=C,U) # O(n*log(n))
+
+Charles = sorted(F,key=D,U) # O(n*log(n))
+
+count = 0
+
+for i=1 to N: # O(N)
+    if Ada[i].U = Charles[i].U:
+        count = count + 1
+return count
+
+The time complexity is O(n*log(n))
+
+The memory complexity is for each array O(n)
